@@ -1,0 +1,15 @@
+.wrapper {
+  /* Add shadows to create the "card" effect */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+  borderradius: 4px;
+  transition: 0.3s;
+}
+/* On mouse-over, add a deeper shadow */
+.wrapper:hover {
+  cursor: pointer;
+  box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.2);
+  opacity: 80%;
+}

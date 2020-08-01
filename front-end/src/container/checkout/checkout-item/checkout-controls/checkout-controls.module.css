@@ -1,0 +1,25 @@
+.customRow {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  align-items: flex-end;
+}
+.buttonGroup {
+  position: relative;
+  align-self: flex-end;
+  bottom: 0;
+}
+
+.customButton {
+  width: 1%;
+}
+
+.divWrapper {
+  display: inline-block;
+  width: 22%;
+  height: 100%;
+}
+
+.customInput {
+  width: 100%;
+}

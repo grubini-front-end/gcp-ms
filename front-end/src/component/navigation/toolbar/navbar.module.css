@@ -1,0 +1,14 @@
+.link {
+  margin: auto 16%;
+  padding: 0 2%;
+}
+.noStyle {
+  text-decoration: none;
+  color: black;
+}
+
+.noStyle:hover {
+  color: black;
+  opacity: 60%;
+  text-decoration: none;
+}

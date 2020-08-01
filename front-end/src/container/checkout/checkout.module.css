@@ -1,0 +1,10 @@
+.checkOut {
+  margin: 6% auto;
+  margin-bottom: 0%;
+  width: 50%;
+}
+.totalPrice {
+  flex: 1;
+  text-align: center;
+  width: 100;
+}
