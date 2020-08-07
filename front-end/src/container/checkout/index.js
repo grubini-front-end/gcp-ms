@@ -14,6 +14,7 @@ import {
   setQuantityManually,
   completeCheckout,
 } from "@component/cart/store/action";
+import { ship_order } from "@container/checkout/store/network";
 
 const Checkout = memo(props => {
   const { cart } = props;
@@ -55,8 +56,19 @@ const Checkout = memo(props => {
     cart,
   ]);
   const completionClickHandler = () => {
-    props.completeCheckout();
-    props.history.replace("/");
+    console.log("can you see this");
+    const order = {
+      cart: props.cart,
+      total: parseFloat(calculateTotal()).toFixed(2),
+    };
+    props.ship_order({
+      order,
+      success_callback: () => {
+        props.history.replace("/");
+      },
+    });
+    // props.completeCheckout();
+    // props.history.replace("/");
   };
   const generateModal = () => {
     return (
@@ -83,7 +95,7 @@ const Checkout = memo(props => {
   ) : (
     <Fragment>
       <div className={classes.totalPrice}>
-        <h4>${calculateTotal()}</h4>
+        <h4>${parseFloat(calculateTotal()).toFixed(2)}</h4>
       </div>
       {generateOrderSummaryList()}
       <div className={classes.checkOut}>
@@ -112,6 +124,7 @@ const mapDispatchToProps = dispatch => {
       dispatch(substractOneFromProduct(payload)),
     setQuantityManually: payload => dispatch(setQuantityManually(payload)),
     completeCheckout: () => dispatch(completeCheckout()),
+    ship_order: payload => dispatch(ship_order(payload)),
   };
 };
 
