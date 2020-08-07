@@ -57,46 +57,46 @@ const app = express();
 //   );
 // });
 
-// app.get("/api/orders", async (req, res) => {
-//   try {
-//     const snapshot = await db.collection("orders").get();
-//     const data = snapshot.docs.map(doc => doc.data());
-//     console.log(data);
-//     // Print the ID and contents of each document
-//     snapshot.forEach(doc => {
-//       console.log(doc.id, " Orders => ", doc.data());
-//     });
+app.get("/api/orders", async (req, res) => {
+  try {
+    const snapshot = await db.collection("orders").get();
+    const data = snapshot.docs.map(doc => doc.data());
+    console.log(data);
+    // Print the ID and contents of each document
+    snapshot.forEach(doc => {
+      console.log(doc.id, " Orders => ", doc.data());
+    });
 
-//     res.json(data);
-//   } catch (e) {
-//     app.get("/api/orders", (req, res) => res.json(orders));
-//     console.error(e);
-//   }
-//   console.log("db getting orders data");
-// });
+    res.json(data);
+  } catch (e) {
+    app.get("/api/orders", (req, res) => res.json(orders));
+    console.error(e);
+  }
+  console.log("db getting orders data");
+});
 
 // //=========================================================================
-// app.post("/api/createorder", async (req, res, next) => {
-//   // Add a new document in collection "cities"
-//   console.log("getting here");
-//   db.collection("orders")
-//     .get()
-//     .then(snap => {
-//       const order = req.body;
-//       db.collection("orders")
-//         .doc(`${new Date().getTime()}`)
-//         .set({ id: snap.size++, ...order })
-//         .then(function () {
-//           console.log("Document successfully written!");
-//           res.status(201).json({ message: "success" });
-//         })
-//         .catch(function (error) {
-//           console.error("Error writing document: ", error);
-//           res.status(417).json({ message: "error creating" });
-//         });
-//       snap.size;
-//     });
-// });
+app.post("/api/createorder", async (req, res, next) => {
+  // Add a new document in collection "cities"
+  console.log("getting here");
+  db.collection("orders")
+    .get()
+    .then(snap => {
+      const order = req.body;
+      db.collection("orders")
+        .doc(`${new Date().getTime()}`)
+        .set({ id: snap.size++, ...order })
+        .then(function () {
+          console.log("Document successfully written!");
+          res.status(201).json({ message: "success" });
+        })
+        .catch(function (error) {
+          console.error("Error writing document: ", error);
+          res.status(417).json({ message: "error creating" });
+        });
+      snap.size;
+    });
+});
 // //=========================================================================
 
 // //this will insert orders json in firestore
@@ -150,7 +150,7 @@ app.get("api/orders", async (req, res) => {
 // console.log("db getting orders data");
 // });
 
-app.listen(8080, () => console.log("hey im here"));
+app.listen(port, () => console.log(`this is the port ${port}`));
 
 /*
 
